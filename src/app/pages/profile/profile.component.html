@@ -1,0 +1,135 @@
+<div class="container-fluid mt-1">
+  <div class="row">
+    <app-nav-profile></app-nav-profile>
+
+    <div class="col-10">
+
+      <app-nav-center></app-nav-center>
+
+      <div class="row" style="padding-right: 30px;">
+        <div class="col-md-12 profil-head">
+          <img *ngIf="coverFilePath !== ''" [src]="coverFilePath" class="cover-img" alt="">
+          <div class="profil-flou" ></div>
+          <div class="icon-cover">
+            <div class="image-upload">
+              <label for="file-2">
+                <i *ngIf="coverProfileLoad === false" class="fas fa-images fa-2x text-white" style="cursor: pointer;"></i>
+                <i *ngIf="coverProfileLoad === true" class="fas fa-spinner fa-spin fa-2x text-white" ></i>
+              </label>
+
+              <input id="file-2" (change)="onFileChange2($event, 'wallpaper')" type="file"/>
+            </div>
+          </div>
+          <div class="icon-cover ml-5">
+            <div class="image-upload">
+              <label for="view-cover">
+                <i (click)="openModal(content)" class="fas fa-eye fa-2x text-white" style="cursor: pointer;"></i>
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="d-flex flex-column  block-info pt-4">
+              <div class="w-100 mb-2 d-flex justify-content-center">
+                <img [src]="profilePath"
+                     width="100" height="100"
+                     alt="..." class="border border-light rounded-circle bg-white">
+
+                <div class="icon-camera rounded-circle bg-danger">
+                  <div class="image-upload">
+                    <label for="file-input">
+                      <i *ngIf="imgProfileLoad === false" class="fas fa-camera fa-2x text-white" style="cursor: pointer;"></i>
+                      <i *ngIf="imgProfileLoad === true" class="fas fa-spinner fa-spin fa-2x text-white" ></i>
+                    </label>
+
+                    <input id="file-input" (change)="onFileChange($event, 'profile')" type="file"/>
+                  </div>
+                </div>
+
+              </div>
+              <div class="d-flex justify-content-center">
+                <p class="block-name" style="color: #fff">
+                  {{ user.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12" *ngIf="createContent === false">
+          <div class="tab-info">
+            <nav class="justify-content-center">
+              <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link"
+                   (click)="changeMenu('Article')"
+                   [ngClass]="{'active': currentMenu === 'Article'}"
+                   href="javascript:void(0)">Aricle</a>
+                <a class="nav-item nav-link"
+                   (click)="changeMenu('Document')"
+                   [ngClass]="{'active': currentMenu === 'Document'}"
+                   href="javascript:void(0)">Document</a>
+                <a class="nav-item nav-link"
+                   (click)="changeMenu('Film')"
+                   [ngClass]="{'active': currentMenu === 'Film'}"
+                   href="javascript:void(0)">Film</a>
+                <a class="nav-item nav-link"
+                   (click)="changeMenu('Profile')"
+                   [ngClass]="{'active': currentMenu === 'Profile'}"
+                   href="javascript:void(0)">Profile</a>
+              </div>
+            </nav>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-danger mt-1" *ngIf="user.email_verified_at === null" role="alert">
+                  <b>Your email is not verified, please follow this link.</b>
+                </div>
+
+                <div class="col-md-12 mt-1" *ngIf="currentMenu !== 'Profile'" >
+                  <a class="btn btn-primary" routerLink="/content"> <i class="fas fa-plus-square mr-1"></i> <b>New Content</b> </a>
+                </div>
+
+                <app-profile-information [user]="user" *ngIf="currentMenu === 'Profile'" ></app-profile-information>
+
+              </div>
+
+              <div class="col-md-12">
+                  <div class="d-flex justify-content-center" *ngIf="loadContent === true">
+                      <app-carret-loader></app-carret-loader>
+                  </div>
+
+                  <app-no-content *ngIf="noContent === true" ></app-no-content>
+              </div>
+
+              <div class="col-md-12">
+                <app-grid-content *ngIf="noContent === false" [isEditing]="true"  ></app-grid-content>
+              </div>
+
+              <div class="col-md-12 mt-5 pt-5" ></div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Cover picture</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img [src]="coverFilePath" alt="" style="position: absolute;margin-left: -50%;margin-top: -3%;">
+  </div>
+</ng-template>

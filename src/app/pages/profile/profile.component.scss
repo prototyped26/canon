@@ -1,0 +1,80 @@
+.profil-head {
+  height: 180px;
+  background-color: #e90000;
+  margin-left: 15px;
+  /* Safari */
+  // -webkit-filter: blur(2px);
+  /* Firefox */
+  // -moz-filter: blur(2px);
+  /* Opera */
+  // -o-filter: blur(2px);
+  /* Internet Explorer */
+  // -ms-filter: blur(2px);
+  /* Filtre de floutage CSS3 standard */
+  // filter: blur(2px);
+  z-index: 1;
+
+  .cover-img {
+    height: 180px;
+    width: 100%;
+    position: absolute;
+    margin-left: -15px;
+    object-fit: cover; /* Do not scale the image */
+    object-position: center;
+  }
+
+  .profil-flou {
+    height: 180px;
+    background-color: rgba(0, 0, 0, 0.29);
+    width: 100%;
+    margin-left: -15px;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .block-info {
+    // margin: auto;
+    width: 40%;
+    z-index: 1000;
+    position: absolute;
+    margin-left: 30%;
+  }
+
+  .block-name {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .tab-info {
+    margin-top: 15%;
+    z-index: 1000;
+  }
+
+  .icon-camera {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    cursor: pointer;
+    margin-left: 9%;
+    margin-top: -1%;
+  }
+  .icon-cover {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2000;
+  }
+  .image-upload > input
+  {
+    display: none;
+  }
+
+  .image-upload
+  {
+    margin-left: 10%;
+    margin-top: 3%;
+    cursor: pointer;
+  }
+}

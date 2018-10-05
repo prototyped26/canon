@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+
+    <div class="col-6">
+      <p>
+        <i class="fas fa-sign-in-alt fa-4x mr-4"></i>
+        <span class="display-4 font-weight-bold"> Sign In</span>
+      </p>
+      <div class="alert alert-danger" *ngIf="errorMessage !== ''" role="alert">
+        {{ errorMessage }}
+      </div>
+      <form [formGroup]="formSign">
+        <div class="form-group">
+          <label for="exampleInputEmail1" class="font-weight-bold">Email address</label>
+          <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+       </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1" class="font-weight-bold">Password</label>
+          <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button type="button" [disabled]="formSign.invalid || (action === true)" (click)="onSubmit()" class="btn btn-danger btn-lg">
+          <span *ngIf="action === false" > Sign In</span>
+          <span *ngIf="action === true">  <i class="fas fa-spinner fa-spin"></i> Loading </span>
+        </button>
+      </form>
+
+      <hr>
+
+      <p class="d-flex justify-content-center">
+        <a routerLink="/forget-password">
+          Forgot Password ?
+        </a>
+      </p>
+
+      <p class="d-flex justify-content-center">
+        Need an account ?
+        <a class="ml-1" href="javascript:void(0)" routerLink="/sign-up">
+          SignUp
+        </a>
+      </p>
+
+      <p class="d-flex justify-content-center">
+        Or go
+        <a class="ml-1" href="javascript:void(0)" routerLink="/">
+          Home
+        </a>
+      </p>
+
+    </div>
+
+    <div class="col">
+
+    </div>
+
+  </div>
+</div>

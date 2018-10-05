@@ -1,3 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+@font-face {
+  font-family: 'Papyrus';
+  src: url("/assets/fonts/47121682.ttf");
+}
+.app-title {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 30%;
+  border-radius: 10px;
+  padding: 10px 10px 10px 10px;
+  background-color: yellow;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 55px;
+  color: #e90000;
+  justify-content: center;
+  text-align: center;
+}
+
+.app-sub-title {
+  margin-bottom: 5px;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 10px 20px 10px 20px;
+  background-color: rgba(12, 12, 12, 0.99);
+  font-family: 'Papyrus', cursive;
+  font-size: 25px;
+  color: rgba(255, 255, 255, 1);
+  justify-content: center;
+  text-align: center;
+}
+
+.second-container {
+  margin-left: 10px;
+  // margin-right: 10px;
+  width: 98%;
+  // height: 100%;
+}
+
+.area-info {
+  // height: 80%;
+  //background-color: red;
+
+  .area-info-no {
+    margin-top: 10%;
+    color: #d8d9da;
+  }
+}

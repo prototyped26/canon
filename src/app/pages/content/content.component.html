@@ -1,0 +1,90 @@
+<div class="container-fluid mt-1">
+  <div class="row">
+    <app-nav-profile></app-nav-profile>
+
+    <div class="col-10">
+
+      <app-nav-center></app-nav-center>
+
+      <div class="row" style="padding-right: 30px;">
+
+        <div class="col-md-12 mt-2" >
+          <h3><a href="javascript:void(0)" class="btn btn-primary btn-sm mr-3" routerLink="/profile">Back to  list</a>  </h3>
+          <h3>Content {{ (this.currentContent.id !== null ? 'Update' : 'Creation') }}</h3>
+          <div class="alert alert-danger mt-1" *ngIf="errorMessage !== ''" role="alert">
+            <b> {{ errorMessage }}</b>
+          </div>
+
+            <div class="row">
+              <div class="col-12">
+                <h5>
+                  Work cover picture
+                </h5>
+                <div class="icon-camera d-flex justify-content-center">
+                  <div class="row w-100 mb-4">
+                    <label for="file-content-cover" style="color: #e90000;background-color: #fff;padding: 4px;border-radius: 5px;position: absolute;">
+                      <i *ngIf="coverContentLoad === false" class="fas fa-camera fa-2x" style="cursor: pointer;"></i>
+                      <i *ngIf="coverContentLoad === true" class="fas fa-spinner fa-spin fa-2x" ></i>
+                    </label>
+                    <img [src]="currentContent.cover" *ngIf="currentContent.cover !== ''" style="height: 200px; width: 100%;object-fit: cover; object-position: center;" alt="">
+
+                  </div>
+                  <div class="row">
+                    <div class="image-upload">
+                      <input id="file-content-cover" (change)="onFileChange($event)" type="file"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mt-2">
+                <form [formGroup]="formContent">
+                  <div class="form-row">
+                    <div class="form-group col-5">
+                      <label for="title" class="col-form-label-lg">Title</label>
+                      <input type="text" formControlName="title" class="form-control" id="title"  placeholder="Content title">
+                      <small id="titleHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group col-5">
+                      <label for="desc" class="col-form-label-lg">Description</label>
+                      <input type="text" formControlName="desc" class="form-control" id="desc"  placeholder="Content description">
+                      <small id="descHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group col-2">
+                      <label for="category" class="col-form-label-lg">Category</label>
+                      <select name="category" formControlName="category" id="category" class="form-control">
+                        <option value=""></option>
+                        <option *ngFor="let category of categories" [value]="category.id"> {{ category.name }} </option>
+                      </select>
+                      <small id="categoryHelp" class="form-text text-muted"></small>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="successMessage !== ''">
+              <div class="col">
+                <div class="alert alert-success mt-1"  role="alert">
+                  <b> {{ successMessage }}</b>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col d-flex justify-content-center">
+                <button (click)="onSubmit()" [disabled]="formContent.invalid || (formction === true)" class="btn btn-primary mt-2">
+                  <span *ngIf="formction === false" > <b>{{ (this.currentContent.id !== null ? 'Update' : 'Create') }} content</b></span>
+                  <span *ngIf="formction === true">  <i class="fas fa-spinner fa-spin"></i> Loading </span>
+                </button>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      <div class="row mt-5 pt-5">
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.icon-cover {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 2000;
+}
+.image-upload > input
+{
+  display: none;
+}
+
+.image-upload
+{
+  margin-left: 10%;
+  margin-top: 3%;
+  cursor: pointer;
+}

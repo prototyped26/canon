@@ -1,0 +1,35 @@
+<div class="col-md-12 ">
+
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-6 d-flex justify-content-center">
+      <div class="row">
+        <div class="alert alert-danger" *ngIf="errorMessage !== ''" role="alert">
+          {{ errorMessage }}
+        </div>
+        <div class="alert alert-success" *ngIf="successMessage !== ''" role="alert">
+          {{ successMessage }}
+        </div>
+      </div>
+      <div class="row">
+        <form [formGroup]="formInfo">
+          <div class="form-group w-100">
+            <label for="exampleInputEmail1" class="font-weight-bold">Email address</label>
+            <input type="email" class="form-control" [(value)]="user.email" disabled id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="name" class="font-weight-bold">User name</label>
+            <input type="text" class="form-control" formControlName="name" id="name" placeholder="User name">
+          </div>
+          <button type="button" [disabled]="formInfo.invalid || (action === true)" (click)="onSubmit()" class="btn btn-primary btn-lg">
+            <span *ngIf="action === false" > Save informations</span>
+            <span *ngIf="action === true">  <i class="fas fa-spinner fa-spin"></i> Loading </span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+    <div class="col"></div>
+  </div>
+
+</div>

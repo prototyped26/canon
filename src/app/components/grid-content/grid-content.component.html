@@ -1,0 +1,64 @@
+<ng-template #modalc let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> {{ modalInformationText }} </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-danger mt-1" *ngIf="messageErrorModal !== ''" role="alert">
+      <span *ngIf="messageErrorModal === 'account'">
+        <b>You do not have an account to perform this action, <a (click)="modal.close('click')" routerLink="/sign-up" href="javascript:void(0)">register</a>  here!</b>
+      </span>
+    </div>
+    <div class="alert alert-success mt-1" *ngIf="messageSuccessModal !== ''" role="alert">
+      {{ messageSuccessModal }}
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="loaderModal === true">
+      <app-carret-loader></app-carret-loader>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #modalcomment let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title"> Comments </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="d-flex justify-content-center" *ngIf="loaderModal === true">
+      <app-carret-loader></app-carret-loader>
+    </div>
+  </div>
+</ng-template>
+
+<div class="container-fluid">
+  <div class="row text-xs-center">
+    <h3 class="headermessage"></h3>
+  </div>
+
+  <ul class="grid">
+    <li *ngFor="let content of listContent; let i = index" class="grid_item a" [ngClass]="{ 'span__1' : tableIndex[i] === 'span__1', 'span__2': tableIndex[i] === 'span__2'}">
+      <div class="grid_link">
+        <div class="tile">
+          <div class="image-block-info" *ngIf="presentComment === true">
+            <a *ngIf="isLiked(content) === false" class="mr-3 " (click)="likeContent(modalc, content, null, true)" href="javascript:void(0)"> <i class="pt-1 mr-1 far fa-heart fa-2x"></i> </a>
+            <a  *ngIf="isLiked(content) === true" class="mr-3 " (click)="likeContent(modalc, content, currentLike(content), false)"  href="javascript:void(0)"> <i style="color: #0070ff" class="pt-1 mr-1 fas fa-heart fa-2x"></i> </a>
+            <a  *ngIf="isFollowed(content) === false" (click)="followContent(modalc, content, null, true)" href="javascript:void(0)"> <i class="pt-1 mr-1 far fa-star fa-2x"></i> </a>
+            <a  *ngIf="isFollowed(content) === true" (click)="followContent(modalc, content, currentFollow(content), true)" href="javascript:void(0)"> <i style="color: #0070ff" class="pt-1 mr-1 fas fa-star fa-2x"></i> </a>
+            <a class="comment" href="javascript:void(0)"> comment </a>
+          </div>
+          <div *ngIf="isEditing === true" class="image-block-edit"> <a routerLink="/content/{{ content.id }}" href="javascript:void(0)" class="btn btn-light btn-sm"> <i class="fas fa-pen-square fa-2x"></i> </a> </div>
+          <div class="tile-back"></div>
+          <img *ngIf="content.cover !== null" class="tile-img" [src]="content.cover" alt="">
+        </div>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+

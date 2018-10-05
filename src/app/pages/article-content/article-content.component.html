@@ -1,0 +1,25 @@
+<div class="container-fluid mt-1">
+  <div class="row">
+    <app-nav-left></app-nav-left>
+
+    <div class="col-10">
+
+      <app-nav-center></app-nav-center>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="d-flex justify-content-center" *ngIf="loadContent === true">
+            <app-carret-loader></app-carret-loader>
+          </div>
+          <app-no-content *ngIf="noContent === true"></app-no-content>
+
+        </div>
+
+        <div class="col-md-12"  >
+          <app-grid-content [commentLine]="true" [isEditing]="false"></app-grid-content>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
