@@ -51,7 +51,7 @@ export class SignUpComponent implements OnInit {
             this.user.password = null;
             this.action = false;
             this.authService.setCurrentUser(this.user);
-            // this.router.navigate(['/profile']);
+            this.router.navigate(['/profile']);
           },
           (error) => {
             console.log(error);

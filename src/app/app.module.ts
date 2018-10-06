@@ -30,6 +30,8 @@ import { CarretLoaderComponent } from './components/carret-loader/carret-loader.
 import { GridContentComponent } from './components/grid-content/grid-content.component';
 import { ContentComponent } from './pages/content/content.component';
 import { ContentEditComponent } from './pages/content/content-edit/content-edit.component';
+import { ToolsMusicComponent } from './components/tools-music/tools-music.component';
+import { ToolsTextComponent } from './components/tools-text/tools-text.component';
 
 const appRoutes: Routes = [
   { path: 'article', component: ArticleContentComponent },
@@ -67,7 +69,9 @@ const appRoutes: Routes = [
     ContentComponent,
     CarretLoaderComponent,
     GridContentComponent,
-    ContentEditComponent
+    ContentEditComponent,
+    ToolsMusicComponent,
+    ToolsTextComponent
   ],
   imports: [
     BrowserModule,

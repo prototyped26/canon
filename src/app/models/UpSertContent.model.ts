@@ -1,3 +1,5 @@
+import {ContentElement} from './ContentElement.model';
+
 export class UpSertContent {
   public id: number;
   public title: string;
@@ -9,6 +11,11 @@ export class UpSertContent {
   public created_at: string;
   public updated_at: string;
   public cover: string;
+  public elements: Array<ContentElement> = [];
+  public comments = [];
+  public like: number;
+  public follow: number;
+  public view: number;
   constructor() {
     this.id = null;
     this.title = '';

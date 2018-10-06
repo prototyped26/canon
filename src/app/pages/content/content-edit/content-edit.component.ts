@@ -8,6 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FileManagerService} from '../../../services/file-manager.service';
 import {AuthServiceService} from '../../../services/auth-service.service';
 import {User} from '../../../models/User.model';
+import {ContentElement} from '../../../models/ContentElement.model';
 
 @Component({
   selector: 'app-content-edit',
@@ -123,4 +124,10 @@ export class ContentEditComponent implements OnInit, OnDestroy {
     };
   }
 
+  onRemove(element: ContentElement) {
+    this.contentService.removeElement(element).subscribe((res) => {
+      const index = this.currentContent.elements.findIndex(x => x.id === element.id);
+      this.currentContent.elements.splice(index, 1);
+    });
+  }
 }
