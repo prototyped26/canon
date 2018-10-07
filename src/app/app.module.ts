@@ -30,6 +30,8 @@ import { CarretLoaderComponent } from './components/carret-loader/carret-loader.
 import { GridContentComponent } from './components/grid-content/grid-content.component';
 import { ContentComponent } from './pages/content/content.component';
 import { ContentEditComponent } from './pages/content/content-edit/content-edit.component';
+import { ContentDetailComponent } from './pages/content-detail/content-detail.component';
+import { BodyLayoutComponent } from './components/body-layout/body-layout.component';
 
 const appRoutes: Routes = [
   { path: 'article', component: ArticleContentComponent },
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'content', component: ContentComponent },
   { path: 'content/:id', component: ContentEditComponent },
+  { path: 'content/:id/detail', component: ContentDetailComponent},
   { path: 'cpanel', component: CpanelComponent },
   { path: 'cpanel/categories', component: CategoriesComponent },
   { path: 'cpanel/login', component: LoginPanelComponent },
@@ -67,7 +70,9 @@ const appRoutes: Routes = [
     ContentComponent,
     CarretLoaderComponent,
     GridContentComponent,
-    ContentEditComponent
+    ContentEditComponent,
+    ContentDetailComponent,
+    BodyLayoutComponent
   ],
   imports: [
     BrowserModule,

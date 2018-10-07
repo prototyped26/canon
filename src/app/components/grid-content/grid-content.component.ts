@@ -1,5 +1,5 @@
+import { UpSertContent } from './../../models/UpSertContent.model';
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {UpSertContent} from '../../models/UpSertContent.model';
 import {ContentService} from '../../services/content.service';
 import {Subscription} from 'rxjs';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -7,6 +7,8 @@ import {Like} from '../../models/Like.model';
 import {Follow} from '../../models/Follow.model';
 import {LikedFollowedContent} from '../../models/LikedFollowedContent.model';
 import {AuthServiceService} from '../../services/auth-service.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-grid-content',
@@ -136,4 +138,5 @@ export class GridContentComponent implements OnInit, OnDestroy {
     const r = this.followedContents.find(l => l.user + '' === '' + this.authService.user.id && l.content === c.id);
     return r.id;
   }
+
 }

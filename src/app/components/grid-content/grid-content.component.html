@@ -41,7 +41,7 @@
   </div>
 
   <ul class="grid">
-    <li *ngFor="let content of listContent; let i = index" class="grid_item a" [ngClass]="{ 'span__1' : tableIndex[i] === 'span__1', 'span__2': tableIndex[i] === 'span__2'}">
+    <li routerLink="/content/{{content.id}}/detail" *ngFor="let content of listContent; let i = index" class="grid_item a" [ngClass]="{ 'span__1' : tableIndex[i] === 'span__1', 'span__2': tableIndex[i] === 'span__2'}">
       <div class="grid_link">
         <div class="tile">
           <div class="image-block-info" *ngIf="presentComment === true">
