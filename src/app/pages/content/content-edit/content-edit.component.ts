@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {Category} from '../../../models/Category.model';
 import {Subscription} from 'rxjs';
 import {UpSertContent} from '../../../models/UpSertContent.model';
@@ -35,6 +35,8 @@ export class ContentEditComponent implements OnInit, OnDestroy {
   public formContent: FormGroup;
   public contentString = '';
   public formction = false;
+  public toolsText = 'audio';
+  public textToEdit = '';
   public fileInformation = {
     type: '',
     value: '',
@@ -42,7 +44,8 @@ export class ContentEditComponent implements OnInit, OnDestroy {
   };
   public userSubscription: Subscription;
   constructor(private formBuilder: FormBuilder, private contentService: ContentService, private route: ActivatedRoute,
-              private fileService: FileManagerService, private authService: AuthServiceService, private router: Router) {
+              private fileService: FileManagerService, private authService: AuthServiceService, private router: Router,
+              private myElement: ElementRef) {
     this.currentContent.content = '';
     const id = this.route.snapshot.paramMap.get('id');
     this.userSubscription = this.authService.userSubject.subscribe(async (u: User) => {
@@ -129,5 +132,14 @@ export class ContentEditComponent implements OnInit, OnDestroy {
       const index = this.currentContent.elements.findIndex(x => x.id === element.id);
       this.currentContent.elements.splice(index, 1);
     });
+  }
+  changeModel(title: string) {
+    this.toolsText = title;
+  }
+  onEditText(text: string) {
+    this.textToEdit = text;
+    this.toolsText = 'audio';
+    // location.hash = '#editor';
+    setInterval(() => { this.toolsText = 'text'; }, 1300);
   }
 }

@@ -34,6 +34,7 @@ import { ContentDetailComponent } from './pages/content-detail/content-detail.co
 import { BodyLayoutComponent } from './components/body-layout/body-layout.component';
 import { ToolsMusicComponent } from './components/tools-music/tools-music.component';
 import { ToolsTextComponent } from './components/tools-text/tools-text.component';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 const appRoutes: Routes = [
   { path: 'article', component: ArticleContentComponent },
@@ -83,6 +84,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ScrollToModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     NgbModule, NgbModalModule,
     EditorModule,
