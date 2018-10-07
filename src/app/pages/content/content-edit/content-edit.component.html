@@ -75,21 +75,23 @@
             <div class="col-md-12 mb-2 shadow-sm p-3 bg-white rounded" *ngFor="let element of currentContent.elements">
               <div class="row element-item">
                 <div class="col-1 d-flex justify-content-center" >
-                  <a [href]="element.value" style="text-decoration: none">
+                  <a *ngIf="element.type !== 'text'" [href]="element.value" style="text-decoration: none">
                     <i *ngIf="element.type === 'audio'" class="fas fa-file-audio fa-5x"></i>
                     <i *ngIf="element.type === 'video'" class="fas fa-file-video fa-5x"></i>
-                    <i *ngIf="element.type === 'text'" class="fas fa-file-alt fa-5x "></i>
                     <i *ngIf="element.type === 'image'" class="fas fa-file-image fa-5x"></i>
+                  </a>
+                  <a  *ngIf="element.type === 'text'" href="javascript:void(0)" style="text-decoration: none">
+                    <i class="fas fa-file-alt fa-5x "></i>
                   </a>
                 </div>
                 <div class="col">
                   <span class="element-date"> Added {{ element.created_at }} </span>
-                  <div class="element-content">
-
-                  </div>
-                  <div class="element-option shadow-sm p-3 bg-white rounded">
-                    <a style="color: #908e8ecc;" href="javascript:void(0)" class="mr-2"> <i class="fas fa-edit"></i>  </a>
-                    <a  href="javascript:void(0)"> <i class="fas fa-trash"></i>  </a>
+                  <div class="element-content mt-3"  *ngIf="element.type === 'text'">
+                      <div class="element-option shadow-sm p-3 bg-white rounded">
+                        <a *ngIf="element.type === 'text'" style="color: #908e8ecc;" [ngx-scroll-to]="'#editor'" (click)="onEditText(element.value)" href="javascript:void(0)" class="mr-2"> <i class="fas fa-edit"></i></a>
+                        <a (click)="onRemove(element)" href="javascript:void(0)"> <i class="fas fa-trash"></i>  </a>
+                      </div>
+                      <div [innerHTML]="element.value"></div>
                   </div>
                 </div>
               </div>
@@ -98,16 +100,19 @@
           </div>
 
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="editor">
               <div class="editor-head">
-                <a href="javascript:void(0)" class="mr-4 ml-4"> <i class="fas fa-headphones-alt fa-2x"></i> </a>
-                <a href="javascript:void(0)" class="mr-4"> <i class="fas fa-video fa-2x"></i> </a>
-                <a href="javascript:void(0)" class="mr-4"> <i class="fas fa-pencil-alt fa-2x"></i> </a>
-                <a href="javascript:void(0)" class="mr-4"> <i class="fas fa-camera fa-2x"></i> </a>
+                <a href="javascript:void(0)" (click)="changeModel('audio')" class="btn mr-4 ml-4"> <i class="fas fa-headphones-alt fa-2x"></i> </a>
+                <a href="javascript:void(0)" (click)="changeModel('video')" class="btn mr-4"> <i class="fas fa-video fa-2x"></i> </a>
+                <a href="javascript:void(0)" (click)="changeModel('text')" class="btn mr-4"> <i class="fas fa-pencil-alt fa-2x"></i> </a>
+                <a href="javascript:void(0)" (click)="changeModel('photo')" class="btn mr-4"> <i class="fas fa-camera fa-2x"></i> </a>
               </div>
               <div class="editor-content">
 
-                <app-tools-music [content]="currentContent" [typeElement]="'audio'"></app-tools-music>
+                <app-tools-text *ngIf="toolsText === 'text'" [content]="currentContent" [textToEdit]="textToEdit"></app-tools-text>
+                <app-tools-music *ngIf="toolsText === 'audio'" [content]="currentContent" [typeElement]="'audio'"></app-tools-music>
+                <app-tools-music *ngIf="toolsText === 'video'" [content]="currentContent" [typeElement]="'video'"></app-tools-music>
+                <app-tools-music *ngIf="toolsText === 'photo'" [content]="currentContent" [typeElement]="'photo'"></app-tools-music>
 
               </div>
             </div>

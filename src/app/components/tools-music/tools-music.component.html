@@ -15,7 +15,9 @@
 <div class="col-md-12 d-flex justify-content-center mt-4 pt-4">
   <div class="form-row" *ngIf="importExternalLoad === false">
     <div class="form-group col-10">
-      <label for="link" class="col-form-label-lg">Audio file link</label>
+      <label *ngIf="typeElement === 'video'" for="link" class="col-form-label-lg">Video file link</label>
+      <label *ngIf="typeElement === 'audio'" for="link" class="col-form-label-lg">Audio file link</label>
+      <label *ngIf="typeElement === 'photo'" for="link" class="col-form-label-lg">Photo file link</label>
       <input type="text" [(ngModel)]="linkExternale" class="form-control" id="link"  placeholder="Content title">
       <small id="linkHelp" class="form-text text-muted"></small>
     </div>
