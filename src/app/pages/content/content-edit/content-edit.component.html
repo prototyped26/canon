@@ -9,7 +9,7 @@
       <div class="row" style="padding-right: 30px;">
 
         <div class="col-md-12 mt-2" >
-          <h3><a href="javascript:void(0)" class="btn btn-primary btn-sm mr-3" routerLink="/profile">Back to  list</a>  </h3>
+          <h3><a href="javascript:void(0)" class="btn btn-light btn-sm mr-3" routerLink="/profile"> <b><i class="fas fa-chevron-left"></i> BACK TO LIST</b> </a>  </h3>
           <h3>Content {{ (this.currentContent.id !== null ? 'Update' : 'Creation') }}</h3>
           <div class="alert alert-danger mt-1" *ngIf="errorMessage !== ''" role="alert">
             <b> {{ errorMessage }}</b>
@@ -62,6 +62,41 @@
             </div>
           </div>
 
+          <div class="row" *ngIf="currentContent.elements === null || currentContent.elements.length === 0">
+            <div class="col-md-12 d-flex justify-content-center">
+              <i class="fas fa-file fa-4x" style="color: #960202"></i>
+            </div>
+            <div class="col-md-12 d-flex justify-content-center">
+              <p style="font-size: 1.4em; color: #960202"> No element </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-2 shadow-sm p-3 bg-white rounded" *ngFor="let element of currentContent.elements">
+              <div class="row element-item">
+                <div class="col-1 d-flex justify-content-center" >
+                  <a [href]="element.value" style="text-decoration: none">
+                    <i *ngIf="element.type === 'audio'" class="fas fa-file-audio fa-5x"></i>
+                    <i *ngIf="element.type === 'video'" class="fas fa-file-video fa-5x"></i>
+                    <i *ngIf="element.type === 'text'" class="fas fa-file-alt fa-5x "></i>
+                    <i *ngIf="element.type === 'image'" class="fas fa-file-image fa-5x"></i>
+                  </a>
+                </div>
+                <div class="col">
+                  <span class="element-date"> Added {{ element.created_at }} </span>
+                  <div class="element-content">
+
+                  </div>
+                  <div class="element-option shadow-sm p-3 bg-white rounded">
+                    <a style="color: #908e8ecc;" href="javascript:void(0)" class="mr-2"> <i class="fas fa-edit"></i>  </a>
+                    <a  href="javascript:void(0)"> <i class="fas fa-trash"></i>  </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
           <div class="row">
             <div class="col-md-12">
               <div class="editor-head">
@@ -70,7 +105,11 @@
                 <a href="javascript:void(0)" class="mr-4"> <i class="fas fa-pencil-alt fa-2x"></i> </a>
                 <a href="javascript:void(0)" class="mr-4"> <i class="fas fa-camera fa-2x"></i> </a>
               </div>
-              <div class="editor-content"></div>
+              <div class="editor-content">
+
+                <app-tools-music [content]="currentContent" [typeElement]="'audio'"></app-tools-music>
+
+              </div>
             </div>
           </div>
 
@@ -83,9 +122,13 @@
           </div>
           <div class="row">
             <div class="col d-flex justify-content-center">
-              <button (click)="onSubmit()" [disabled]="formContent.invalid || (formction === true)" class="btn btn-primary mt-2">
+              <button (click)="onSubmit()" [disabled]="formContent.invalid || (formction === true)" class="btn btn-danger mt-2 mr-5">
                 <span *ngIf="formction === false" > <b>{{ (this.currentContent.id !== null ? 'Update' : 'Create') }} content</b></span>
                 <span *ngIf="formction === true">  <i class="fas fa-spinner fa-spin"></i> Loading </span>
+              </button>
+
+              <button class="btn btn-light ml-5 mt-2">
+                <b><i class="fas fa-trash"></i> Delete content</b>
               </button>
             </div>
           </div>

@@ -10,6 +10,7 @@ import {Follow} from '../models/Follow.model';
 import {LikedFollowedContent} from '../models/LikedFollowedContent.model';
 import {catchError, map, tap} from 'rxjs/operators';
 import {errorHandler} from '../../../node_modules/@angular/platform-browser/src/browser';
+import {ContentElement} from '../models/ContentElement.model';
 
 @Injectable({
   providedIn: 'root'
@@ -294,6 +295,50 @@ export class ContentService {
     });
   }
 
+
+  addElement(elt: ContentElement): Observable<ContentElement> {
+    const head = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': '' + this.authSerice.userTokenType + ' ' + this.authSerice.userToken
+    });
+    return this.httpClient.post<ContentElement>(
+      this.authSerice.apiObject.endPoint + 'content/element',
+      elt,
+      {headers: head}).pipe(
+      tap( (element: any) => {
+        console.log(element);
+      }),
+      catchError(this.handleError<UpSertContent[]>('addElement', []))
+    );
+  }
+  removeElement(elt: ContentElement): Observable<any> {
+    const head = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': '' + this.authSerice.userTokenType + ' ' + this.authSerice.userToken
+    });
+    return this.httpClient.delete<any>(
+      this.authSerice.apiObject.endPoint + 'content/element/' + elt.id,
+      {headers: head}).pipe(
+      tap( (element: any) => {
+        // console.log(element);
+      }),
+      catchError(this.handleError<UpSertContent[]>('removeElement', []))
+    );
+  }
+  removeContent(content: UpSertContent): Observable<any> {
+    const head = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': '' + this.authSerice.userTokenType + ' ' + this.authSerice.userToken
+    });
+    return this.httpClient.delete<any>(
+      this.authSerice.apiObject.endPoint + 'content/' + content.id,
+      {headers: head}).pipe(
+      tap( (element: any) => {
+        // console.log(element);
+      }),
+      catchError(this.handleError<UpSertContent[]>('removeElement', []))
+    );
+  }
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

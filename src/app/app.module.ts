@@ -32,6 +32,8 @@ import { ContentComponent } from './pages/content/content.component';
 import { ContentEditComponent } from './pages/content/content-edit/content-edit.component';
 import { ContentDetailComponent } from './pages/content-detail/content-detail.component';
 import { BodyLayoutComponent } from './components/body-layout/body-layout.component';
+import { ToolsMusicComponent } from './components/tools-music/tools-music.component';
+import { ToolsTextComponent } from './components/tools-text/tools-text.component';
 
 const appRoutes: Routes = [
   { path: 'article', component: ArticleContentComponent },
@@ -72,7 +74,9 @@ const appRoutes: Routes = [
     GridContentComponent,
     ContentEditComponent,
     ContentDetailComponent,
-    BodyLayoutComponent
+    BodyLayoutComponent,
+    ToolsMusicComponent,
+    ToolsTextComponent
   ],
   imports: [
     BrowserModule,
