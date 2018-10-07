@@ -15,19 +15,19 @@
             <h4>Author</h4>
             <img src="{{content.user.img}}" alt="" class="thumbnail img-circle">
             <h5>{{content.user.name}}</h5>
-            <div class="socials"><i class="fa fa-heart"></i><i class="fa fa-star"></i></div>
+            <div class="socials"><i class="far fa-heart"></i><i class="far fa-star"></i></div>
             <div class="works">
-              <!-- <i class="fa fa-cog"></i> #{{content.works}} -->
+              <i class="fa fa-cog"></i> #{{content.works}}
             </div>
           </div>
           <div id="middle-content" class="col-md-6">
               <h2>{{content.title}}</h2>
               <p>{{content.desc}}</p>
               <hr>
-              <p>
+              <!-- <p>
                 <button class="btn btn-default"><i class="fa fa-edit"></i> Edit</button> <button class="btn btn-default"><i class="fa fa-trash"></i> Delete</button>
               </p>
-              <hr>
+              <hr> -->
               <ng-container *ngFor="let element of content.elements">
                 <ng-container *ngIf="element.type == 'audio'">
                     <audio controls>

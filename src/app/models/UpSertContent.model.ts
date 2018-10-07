@@ -18,6 +18,7 @@ export class UpSertContent {
   public like_number: number;
   public follow_number: number;
   public view: number;
+  public works:number;
   constructor() {
     this.id = null;
     this.title = '';
