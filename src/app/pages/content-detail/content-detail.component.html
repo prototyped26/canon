@@ -1,28 +1,54 @@
 <app-body-layout>
  
-      <!-- <div class="d-flex justify-content-center" *ngIf="loaderModal === true">
+     <div class="d-flex justify-content-center" *ngIf="content === null">
           <app-carret-loader></app-carret-loader>
-        </div> -->
-  
-      <div class="content-header" style="background-image: url({{content.cover}});background-size: cover;background-position: center;">
-        <div class="back-icon"><i class="fas fa-undo-alt"></i></div>
-        <div class="left-arrow"><i class="fas fa-step-backward"></i></div>
-        <div class="right-arrow"><i class="fas fa-step-forward"></i></div>
+        </div>
+  <ng-container *ngIf="content !== null">
+      <div class="content-header">
+          <img [src]="content.cover" alt="">
+          <div class="back-icon" (click)="goBack()"><i class="fas fa-undo-alt"></i></div>
+          <div class="left-arrow"><i class="fas fa-step-backward"></i></div>
+          <div class="right-arrow"><i class="fas fa-step-forward"></i></div>
       </div>
       <div class="row">
           <div id="left-content" class="col-md-3">
             <h4>Author</h4>
-            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" class="thumbnail img-circle">
-            <h5>John doe</h5>
+            <img src="{{content.user.img}}" alt="" class="thumbnail img-circle">
+            <h5>{{content.user.name}}</h5>
             <div class="socials"><i class="fa fa-heart"></i><i class="fa fa-star"></i></div>
             <div class="works">
-              <i class="fa fa-cog"></i> #works
+              <!-- <i class="fa fa-cog"></i> #{{content.works}} -->
             </div>
           </div>
           <div id="middle-content" class="col-md-6">
               <h2>{{content.title}}</h2>
               <p>{{content.desc}}</p>
               <hr>
+              <p>
+                <button class="btn btn-default"><i class="fa fa-edit"></i> Edit</button> <button class="btn btn-default"><i class="fa fa-trash"></i> Delete</button>
+              </p>
+              <hr>
+              <ng-container *ngFor="let element of content.elements">
+                <ng-container *ngIf="element.type == 'audio'">
+                    <audio controls>
+                        <source src="{{element.value}}">
+                      Your browser does not support the audio element.
+                    </audio>
+                    <br>
+                    <br>
+                </ng-container>
+                <ng-container *ngIf="element.type == 'text'">
+                  <div [innerHTML]="element.value"></div>
+                  <br>
+                  <br>
+                </ng-container>
+                <ng-container *ngIf="element.type == 'video'">
+                    <video controls>
+                      <source src="element.value">
+                      Your browser does not support the video tag.
+                    </video>
+                </ng-container>
+              </ng-container>
           </div>
           <div id="right-content" class="col-md-3">
             <div class="left-stat">
@@ -39,5 +65,6 @@
             </div>
           </div>
       </div>
+  </ng-container>
 </app-body-layout>
 
